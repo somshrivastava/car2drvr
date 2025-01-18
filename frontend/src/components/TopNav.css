@@ -4,13 +4,16 @@
   justify-content: space-between;
   align-items: center;
   background-color: #007bff; /* Blue background */
-  padding: 10px 20px;
-  color: white;
+  padding: 10px;
+  margin: 0;
+  color: rgb(208, 72, 72);
   font-family: Arial, sans-serif;
   position: fixed;
   top: 0;
-  width: 100%;
-  margin: 0;
+  left: 0;
+  width: 100%; /* Ensure full width */
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .topnav-start img {
@@ -29,22 +32,24 @@
   color: white;
   font-size: 16px;
   cursor: pointer;
-  transition: color 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .topnav-button:hover {
-  color: #ffdd57; /* Yellow on hover */
-  text-decoration: underline;
+  background-color: #0056b3; /* Darker blue on hover */
+  color: #ffdd57; /* Yellow text on hover */
 }
 
 .topnav-end .topnav-profile-button {
   background: white;
   border: none;
   color: #007bff;
-  font-size: 16px;
+  font-size: 18px;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,10 +58,17 @@
 }
 
 .topnav-end .topnav-profile-button:hover {
-  background: #ffdd57; /* Yellow on hover */
-  color: white;
+  background: #ffdd57; /* Yellow background on hover */
+  color: #007bff;
 }
 
 .topnav-end .topnav-icon {
   font-size: 20px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 70px; /* Reserve space for the fixed topnav */
+  font-family: Arial, sans-serif;
 }

@@ -13,8 +13,8 @@ import NewQuery from "./pages/NewQuery/NewQuery.jsx";
 import About from "./pages/About/About.jsx";
 
 const router = createBrowserRouter([
-  { path: "/", element: <App /> },
-  { path: "/home", element: <Home /> },
+  { path: "/app", element: <App /> },
+  { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
   { path: "/newq", element: <NewQuery /> },
   { path: "/about", element: <About /> },

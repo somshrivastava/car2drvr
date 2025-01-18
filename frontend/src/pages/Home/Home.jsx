@@ -3,6 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import "./home.scss";
 import TopNav from "../../components/TopNav.jsx";
+import Footer from "../../components/Footer.jsx";
 
 const Home = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Home = () => {
   return (
     <div>
       <TopNav />
+      <Footer />
     </div>
   );
 };
