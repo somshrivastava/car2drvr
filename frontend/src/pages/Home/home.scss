@@ -1,0 +1,74 @@
+.home-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .hero-section {
+    width: 100%;
+    height: 100%;
+    /* Placeholder background color until image is added */
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 5%;
+  }
+  
+  .content-wrapper {
+    max-width: 600px;
+    z-index: 1;
+  }
+  
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .search-button {
+    background-color: rgba(135, 206, 250, 0.8);
+    padding: 20px 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: fit-content;
+  }
+  
+  .search-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .car-icon-placeholder {
+    font-size: 24px;
+  }
+  
+  .arrow {
+    font-size: 1.5rem;
+    margin-left: 10px;
+  }
+  
+  /* Add a media query for mobile responsiveness */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+    
+    .search-button {
+      padding: 15px 30px;
+    }
+  }
+  
