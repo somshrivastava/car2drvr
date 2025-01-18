@@ -5,6 +5,17 @@
   text-align: center;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -38,5 +49,5 @@
 }
 
 .read-the-docs {
-  color: #888;
+  color: #ffffff;
 }
