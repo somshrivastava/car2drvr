@@ -16,6 +16,7 @@
 
 .form-group {
   margin-bottom: 15px;
+  align-items: center;
 }
 
 .form-group label {
@@ -68,4 +69,8 @@ textarea {
 
 .submit-button:hover {
   background-color: #0056b3;
+}
+
+body {
+  background-color: #93c4f8;
 }
