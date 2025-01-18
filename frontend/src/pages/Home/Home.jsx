@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import "./home.scss";
+import TopNav from "../../components/TopNav.jsx";
 
 const Home = () => {
   useEffect(() => {
@@ -15,7 +16,11 @@ const Home = () => {
     });
   }, []);
 
-  return <section>Home Page</section>;
+  return (
+    <div>
+      <TopNav />
+    </div>
+  );
 };
 
 export default Home;

@@ -2,7 +2,93 @@
   "hash": "351948c0",
   "configHash": "967c3ddd",
   "lockfileHash": "1db7398d",
-  "browserHash": "46511be4",
-  "optimized": {},
-  "chunks": {}
+  "browserHash": "ba0d7792",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "84aa35b9",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "c0195ff0",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "38b4d460",
+      "needsInterop": false
+    },
+    "primereact/api": {
+      "src": "../../node_modules/primereact/api/api.esm.js",
+      "file": "primereact_api.js",
+      "fileHash": "e0c632f3",
+      "needsInterop": false
+    },
+    "primereact/inputtext": {
+      "src": "../../node_modules/primereact/inputtext/inputtext.esm.js",
+      "file": "primereact_inputtext.js",
+      "fileHash": "42a4f69a",
+      "needsInterop": false
+    },
+    "firebase/auth": {
+      "src": "../../node_modules/firebase/auth/dist/esm/index.esm.js",
+      "file": "firebase_auth.js",
+      "fileHash": "bd5c2479",
+      "needsInterop": false
+    },
+    "primereact/button": {
+      "src": "../../node_modules/primereact/button/button.esm.js",
+      "file": "primereact_button.js",
+      "fileHash": "6465a7a2",
+      "needsInterop": false
+    },
+    "firebase/firestore": {
+      "src": "../../node_modules/firebase/firestore/dist/esm/index.esm.js",
+      "file": "firebase_firestore.js",
+      "fileHash": "7e245b97",
+      "needsInterop": false
+    },
+    "firebase/app": {
+      "src": "../../node_modules/firebase/app/dist/esm/index.esm.js",
+      "file": "firebase_app.js",
+      "fileHash": "04a7084b",
+      "needsInterop": false
+    },
+    "primereact/menubar": {
+      "src": "../../node_modules/primereact/menubar/menubar.esm.js",
+      "file": "primereact_menubar.js",
+      "fileHash": "63d1c704",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-LJPGVKRI": {
+      "file": "chunk-LJPGVKRI.js"
+    },
+    "chunk-IPYILTUR": {
+      "file": "chunk-IPYILTUR.js"
+    },
+    "chunk-MWKEVDEY": {
+      "file": "chunk-MWKEVDEY.js"
+    },
+    "chunk-3N2NOHTJ": {
+      "file": "chunk-3N2NOHTJ.js"
+    },
+    "chunk-MX24FRQG": {
+      "file": "chunk-MX24FRQG.js"
+    },
+    "chunk-A46AQZYT": {
+      "file": "chunk-A46AQZYT.js"
+    },
+    "chunk-4SFRHSJ3": {
+      "file": "chunk-4SFRHSJ3.js"
+    },
+    "chunk-EQCVQC35": {
+      "file": "chunk-EQCVQC35.js"
+    }
+  }
 }

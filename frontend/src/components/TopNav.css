@@ -1,0 +1,62 @@
+/* TopNav Styles */
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff; /* Blue background */
+  padding: 10px 20px;
+  color: white;
+  font-family: Arial, sans-serif;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.topnav-start img {
+  height: 50px;
+  cursor: pointer;
+}
+
+.topnav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.topnav-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.topnav-button:hover {
+  color: #ffdd57; /* Yellow on hover */
+  text-decoration: underline;
+}
+
+.topnav-end .topnav-profile-button {
+  background: white;
+  border: none;
+  color: #007bff;
+  font-size: 16px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.topnav-end .topnav-profile-button:hover {
+  background: #ffdd57; /* Yellow on hover */
+  color: white;
+}
+
+.topnav-end .topnav-icon {
+  font-size: 20px;
+}
