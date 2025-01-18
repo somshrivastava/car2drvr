@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import "./NewQuery.css";
 import TopNav from "../../components/TopNav.jsx";
+import Footer from "../../components/Footer.jsx";
 
 const NewQuery = () => {
   const [formData, setFormData] = useState({
@@ -64,11 +65,11 @@ const NewQuery = () => {
       <TopNav />
 
       <form onSubmit={handleSubmit} className="new-query-form">
-        <h2>Car Search Query</h2>
+        <h2 className="form-title">Car Search Query</h2>
 
         {/* Budget Range */}
         <div className="form-group">
-          <label>Budget Range:</label>
+          <label className="form-label">Budget Range:</label>
           <div className="input-group">
             <InputText
               type="number"
@@ -76,21 +77,25 @@ const NewQuery = () => {
               placeholder="Min"
               value={formData.budgetLow}
               onChange={handleInputChange}
+              className="input-text"
             />
-            -
+            <span className="input-separator">-</span>
             <InputText
               type="number"
               name="budgetHigh"
               placeholder="Max"
               value={formData.budgetHigh}
               onChange={handleInputChange}
+              className="input-text"
             />
           </div>
         </div>
 
         {/* Car Style */}
         <fieldset className="form-group">
-          <legend>Car Style (Select all that apply):</legend>
+          <legend className="form-legend">
+            Car Style (Select all that apply):
+          </legend>
           {carStyles.map((style) => (
             <label key={style} className="checkbox-label">
               <input
@@ -190,13 +195,19 @@ const NewQuery = () => {
 
         {/* Non-Negotiables */}
         <div className="form-group">
-          <label>Non-Negotiables (List them below!):</label>
+          <label className="form-label">
+            Non-Negotiables (List them below!):
+          </label>
           <textarea
             name="nonNegotiables"
-            placeholder="Enter a list of your non-negotiables..."
+            placeholder={`Enter a list of your non-negotiables...
+            - 4 doors
+            - leather seats
+            - etc.`}
             value={formData.nonNegotiables}
             onChange={handleInputChange}
             rows="4"
+            className="textarea"
           />
         </div>
 
@@ -204,6 +215,7 @@ const NewQuery = () => {
           Submit
         </button>
       </form>
+      <Footer />
     </>
   );
 };
