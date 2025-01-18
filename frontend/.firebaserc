@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "nutrition-6853e"
+  },
+  "targets": {
+    "nutrition-6853e": {
+      "hosting": {
+        "nutrition-finhacks": [
+          "nutrition-6853e"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
