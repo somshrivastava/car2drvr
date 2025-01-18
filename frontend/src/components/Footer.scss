@@ -6,4 +6,12 @@
   left: 0;
   height: 40px;
   font-size: small;
+
+  & .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
 }
