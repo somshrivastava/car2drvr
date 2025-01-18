@@ -3,12 +3,16 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import TopNav from "../../components/TopNav.jsx";
 import "./About.css"; 
+import rishiHeadshot from "./../../assets/rishi_dil.jpg";
+import namanHeadshot from "./../../assets/naman_headshot.jpeg";
+import somHeadshot from "./../../assets/som_shri.jpeg";
+import arshayHeadshot from "./../../assets/arshay_patel_headshot.jpeg"; 
 
 const teamMembers = [
-  { name: "Rishi Dilip", email: "rishidilip@outlook.com", image: "../../assets/naman_headshot.jpeg" },
-  { name: "Naman Rusia", email: "naman.rusia14@gmail.com", image: "path/to/image2.jpg" },
-  { name: "Arshay Patel", email: "arshay2324@gmail.com", image: "path/to/image3.jpg" },
-  { name: "Som Shrivastava", email: "som.shrivastava@gmail.com", image: "path/to/image4.jpg" }
+  { name: "Rishi Dilip", email: "rishidilip@outlook.com", image: rishiHeadshot },
+  { name: "Naman Rusia", email: "naman.rusia14@gmail.com", image: namanHeadshot },
+  { name: "Arshay Patel", email: "arshay2324@gmail.com", image: arshayHeadshot },
+  { name: "Som Shrivastava", email: "som.shrivastava@gmail.com", image: somHeadshot }
 ];
 
 
