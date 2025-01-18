@@ -32,6 +32,9 @@ function TopNav() {
         <button className="topnav-button" onClick={() => navigate("/contact")}>
           Contact
         </button>
+        <button className="topnav-button" onClick={() => navigate("/newq")}>
+          New Query
+        </button>
       </div>
 
       {/* Profile Button */}
