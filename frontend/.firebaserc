@@ -1,12 +1,12 @@
 {
   "projects": {
-    "default": "nutrition-6853e"
+    "default": "car2drvr-finhacks"
   },
   "targets": {
-    "nutrition-6853e": {
+    "car2drvr-finhacks": {
       "hosting": {
-        "nutrition-finhacks": [
-          "nutrition-6853e"
+        "car2drvr-finhacks": [
+          "car2drvr-finhacks"
         ]
       }
     }
