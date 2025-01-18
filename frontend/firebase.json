@@ -1,8 +1,11 @@
 {
   "hosting": {
-    "site": "car2drvr-finhacks",
     "source": ".",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "frameworksBackend": {
       "region": "us-central1"
     }
