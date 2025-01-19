@@ -27,9 +27,6 @@ function TopNav() {
         <button className="topnav-button" onClick={() => navigate("/about")}>
           About
         </button>
-        <button className="topnav-button" onClick={() => navigate("/services")}>
-          Services
-        </button>
         <button className="topnav-button" onClick={() => navigate("/contact")}>
           Contact
         </button>
@@ -42,7 +39,7 @@ function TopNav() {
       <div className="topnav-end">
         <button
           className="topnav-profile-button"
-          onClick={() => alert("Profile button clicked!")}
+          onClick={() => navigate("/profile")}
         >
           <i className="topnav-icon">👤</i>
         </button>
