@@ -5,13 +5,6 @@ import axios from "axios";
 
 const app = express();
 
-// app.use(
-//   cors({
-//     origin: "http://127.0.0.1:5001",
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     credentials: true,
-//   })
-// );
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -101,9 +94,10 @@ function getPrompt(params: any) {
        - make sure that these are the highest rated, most accurate, best reccomendations based on reviews and real world testing, and safety ratings. Display the trim of each car and the safety score as well.
        - Add an estimated price to each of the objects in the list by referencing cars.com, make sure this price is within the price range, make the estimated price another key in the object
        - For used cars only, display the mile range and year at which the car would be best to purchase at to ensure it is the best deal for the customers, make sure to include these in the json file as another key in the object
-       - For used cars only, do not display the msrp of the car as the price, display what the average cost of the car would be in that year, factoring in average depriciation, how many years old it is, and mileages. Then display the new more accurate price of the used car
+       - For used cars only, do not display the msrp of the car as the price, display what the average cost of the car would be in that year, factoring in average depriciation, how many years old it is, and mileages. Then display the new more accurate price of the used car, DO NOT DIPLAY THE PRICE OF THE USED CAR AS IF IT WERE NEW, ONLY DISPLAY THE PRICE OF THE USED CAR FACTORING IN DEPRICIATION OF THE VEHICLE AND OTHER FACTORS YOU FIND ONLINE TO INDICATE THE MOST ACCURATE PRICE FOR A USED CAR. 
        - For used cars only, factor in what dealerships in the MA areas are selling and have sold these cars to determine wether or not the deal and price you reccomend are truly the best offers there are. 
        - For both new and used cars, when returning the json file, make sure that the description is not the non negotiables, the description should be a small paragraph about the car being listed itself, it should include figures like horsepower, drivetrain, wether or nots its awd, features, and other important information about the car to better inform the user in the most breif and concise, easy to understand way.
+      - Add the trim of the car too
 
 
        2. Output Format:

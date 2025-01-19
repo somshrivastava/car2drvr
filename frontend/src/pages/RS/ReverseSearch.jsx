@@ -5,6 +5,7 @@ import Footer from "../../components/Footer.jsx";
 import "./ReverseSearch.css";
 import axios from "axios";
 import { API_URL } from "../../environment.ts";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 const ReverseSearch = () => {
   const [base64String, setBase64String] = useState("");
@@ -65,14 +66,25 @@ const ReverseSearch = () => {
               src={imagePreview}
               alt="Preview"
               style={{
-                maxWidth: "300px",
+                maxWidth: "275px",
                 height: "auto",
                 border: "1px solid #ccc",
               }}
             />
           </div>
         )}
-        <h1>{name}</h1>
+        <h1>
+          {name.length == 0 && base64String.length > 0 ? (
+            <div className="progress-spinner">
+              <ProgressSpinner
+                style={{ width: "100px", height: "100px" }}
+                strokeWidth="5"
+              />
+            </div>
+          ) : (
+            <p>{name}</p>
+          )}
+        </h1>
       </div>
     </>
   );

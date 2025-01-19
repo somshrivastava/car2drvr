@@ -99,7 +99,8 @@ const Recommendations = () => {
                   {car.year} {car.make} {car.model}
                 </h2>
                 <p>{car.description}</p>
-                <p>Price: {car.estimated_price}</p>
+                <p>Price: ${car.estimated_price}</p>
+                <p>Mile Range: {car.mile_range}</p>
                 <p>Trim: {car.trim}</p>
                 <p>Safety Score: {car.safety_score}</p>
               </li>

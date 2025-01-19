@@ -14,6 +14,7 @@ import TopNav from "./components/TopNav.jsx";
 import Footer from "./components/Footer.jsx";
 import "./main.scss";
 import { PrimeReactProvider } from "primereact/api";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
