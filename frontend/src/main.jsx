@@ -6,8 +6,8 @@ import Home from "./pages/Home/Home.jsx";
 import NewQuery from "./pages/NewQuery/NewQuery.jsx";
 import About from "./pages/About/About.jsx";
 import Contact from "./pages/Contact/Contact.jsx";
-////import Profile from "./pages/Profile/Profile.jsx";
 import Login from "./pages/Login/Login.jsx";
+import Profile from "./pages/Profile/Profile.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -19,6 +19,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

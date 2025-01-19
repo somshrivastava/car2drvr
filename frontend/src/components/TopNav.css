@@ -63,3 +63,12 @@
 .topnav-end .topnav-icon {
   font-size: 20px;
 }
+
+.topnav-logout-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+}
