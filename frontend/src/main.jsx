@@ -10,6 +10,7 @@ import Login from "./pages/Login/Login.jsx";
 import Recommendations from "./pages/Recommendations/Recommendations.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import ReverseSearch from "./pages/RS/ReverseSearch.jsx";
+import Search from "./pages/Search/Search.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -24,7 +25,8 @@ createRoot(document.getElementById("root")).render(
         <Route path="/reccs" element={<Recommendations />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/loginsuccess" element={<Home />} />
-        <Route path="/search" element={<ReverseSearch />} />
+        <Route path="/reverse-search" element={<ReverseSearch />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/reccs/:encodedData" element={<Recommendations />} />
       </Routes>
     </BrowserRouter>

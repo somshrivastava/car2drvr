@@ -165,4 +165,8 @@ app.post("/get_image", async (request, response) => {
   });
 });
 
+app.get("/get_mom", async (request, response) => {
+  response.status(200).send({ name: "mom" });
+});
+
 export const api = functions.https.onRequest(app);
