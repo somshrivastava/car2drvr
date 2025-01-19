@@ -3,12 +3,9 @@ import express from "express";
 import cors from "cors";
 import axios from "axios";
 
-// Initialize Express app
 const app = express();
 
-// Enable CORS
 app.use(cors({ origin: "http://127.0.0.1:5001" }));
-
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -17,39 +14,50 @@ app.use(function (req, res, next) {
   );
   next();
 });
-
-// Middleware for parsing JSON
 app.use(express.json());
 
-const OPEN =
-  "sk-proj-4fF9S4Oe4r45TUzIJGXDmG6igivBKZTOEqrU8IB8EwZY8W9Jd7LHfJXn8OcFkRwjop99wd";
-
-app.post("/get_car_data", async (req, res) => {
-  const response = await axios.get(
-    `https://api.vehicledatabases.com/market-value/ymm/${req.body.year}/${req.body.make}/${req.body.model}`
+app.post("/get_car_recommendations", async (request, response) => {
+  const res = await axios.post(
+    "https://api.openai.com/v1/chat/completions",
+    {
+      model: "gpt-4o",
+      messages: [
+        {
+          role: "user",
+          content: getPrompt(request.body.params),
+        },
+      ],
+      temperature: 0.7,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getKey()}`,
+      },
+    }
   );
-  res.status(200).send({ data: response.data });
+  let recommendations = res.data.choices[0].message.content
+    .substring(7)
+    .slice(0, -3)
+    .replaceAll("\n", "")
+    .replaceAll(/\\/g, "")
+    .replaceAll("[", "")
+    .replaceAll("]", "")
+    .trim();
+  response.status(200).send({
+    data: recommendations,
+  });
 });
 
-const OPEN2 =
-  "-OmrsT3BlbkFJw21ujKUjim3EGf83YTxjJLU-QsPnrJR8iA6rb6cgG7Xy-O-84k6usKjXYcmbPUrmTWtdQbZv0A";
+function getKey() {
+  return (
+    "sk-proj-0fMm5B9_hQXBfsiSvakYMnyElxEpDkrl4v0NJm3qFJv3BVrJlGlrzDjnyE15-c2hbHh" +
+    "-b5QkDGT3BlbkFJB8aOWuyow0ZErSlZmU9d_TOV1DkrMoIX1L7wFqn7UnKXZQfzbgK6f0BphkxCRCZCSEIckPmKYA"
+  );
+}
 
-const final = OPEN + OPEN2;
-
-app.post("/get_car_recommendations", async (req, res) => {
-  const url = "https://api.openai.com/v1/chat/completions";
-
-  const params = {
-    min_price: req.body.min_price,
-    max_price: req.body.max_price,
-    condition: req.body.condition,
-    car_styling: req.body.car_styling,
-    use_case: req.body.use_case,
-    fuel_type: req.body.fuel_type,
-    non_negotiable: req.body.non_negotiable,
-  };
-
-  const chatGPTPrompt = `
+function getPrompt(params: any) {
+  return `
          You are a car expert when it comes to reccomending vehicles given these inputs, you make sure that the each vehicle you provide is WITHIN the given price range. Your task is to recommend cars based on the following user preferences. It is critical that you strictly adhere to these restrictions and output the recommendations in a valid JSON format. Ensure the cars meet all criteria and are suitable for validation through the VehicleDatabase API.
        - MAKE SURE TO TRIPPLE CHECK IF THE MINIMUM MSRP IS GREATER THEN min_price, AND MAKE SURE THAT THE HIGHEST MSRP IS LESS THEN THE max_price.
        User Preferences:
@@ -68,7 +76,7 @@ app.post("/get_car_recommendations", async (req, res) => {
        - Each cars msrp must be within the minimum and maximum price range
        - The lowest tier trim on a car must be greater then the min_price and less then the max_price, for example if the min_price = 52000, a honda pilot even if it meets the requirements should never be displayed since the lowest trim is under 52000
        - make sure that these are the highest rated, most accurate, best reccomendations based on reviews and real world testing, and safety ratings. Display the trim of each car and the safety score as well.
-       - 
+       - Add an estimated price to each of the objects in the list by referencing cars.com, make sure this price is within the price range, make the estimated price another key in the object
 
 
        2. Output Format:
@@ -121,46 +129,8 @@ app.post("/get_car_recommendations", async (req, res) => {
            "description": "An electric SUV with a heads-up display, rain-sensing wipers, and over 600 horsepower. Ideal for fun and everyday tasks."
        }
        ]
+
       At the end of the day, all I want is just a JSON file with the data that I requested, don't say anything else to me. Can you return it as a stringified JSON file?`;
-
-  const data = {
-    model: "gpt-4o", // Change to "gpt-4o-mini" if you're using that specific model
-    messages: [
-      {
-        role: "user",
-        content: chatGPTPrompt,
-      },
-    ],
-    temperature: 0.7,
-  };
-
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${final}`,
-  };
-
-  try {
-    const response = await axios.post(url, data, { headers });
-    console.log("Response from ChatGPT API:");
-    const val = response.data.choices[0].message.content
-      .substring(7)
-      .slice(0, -3)
-      .replaceAll("\n", "")
-      .replaceAll(/\\/g, "")
-      .replaceAll("[", "")
-      .replaceAll("]", "")
-      .trim();
-    console.log(val);
-    res.status(200).send({
-      data: val,
-    });
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error("Error response from OpenAI API:", error.response?.data);
-    } else {
-      console.error("An unexpected error occurred:", error);
-    }
-  }
-});
+}
 
 export const api = functions.https.onRequest(app);
