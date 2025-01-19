@@ -135,4 +135,34 @@ function getPrompt(params: any) {
       At the end of the day, all I want is just a JSON file with the data that I requested, don't say anything else to me. Can you return it as a stringified JSON file?`;
 }
 
+const API_KEY = "AIzaSyDoARmjCcPX9zXjVZGm57uIEqK3JXko5mw";
+const VISION_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${API_KEY}`;
+
+app.post("/get_image", async (request, response) => {
+  const res = await axios.post(VISION_API_URL, {
+    requests: [
+      {
+        image: {
+          content: request.body.image_base64,
+        },
+        features: [
+          {
+            type: "WEB_DETECTION",
+            maxResults: 10,
+          },
+        ],
+      },
+    ],
+  });
+
+  // const labels = res.data.responses[0].labelAnnotations;
+  // const descriptions = labels.map((label: any) => label.description).join(", ");
+
+  response.status(200).send({
+    data: JSON.stringify(
+      res.data.responses[0].webDetection.webEntities[0].description
+    ),
+  });
+});
+
 export const api = functions.https.onRequest(app);
