@@ -8,6 +8,7 @@ import About from "./pages/About/About.jsx";
 import Contact from "./pages/Contact/Contact.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
+import ReverseSearch from "./pages/RS/ReverseSearch.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/loginsuccess" element={<Home />} />
+        <Route path="/search" element={<ReverseSearch />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

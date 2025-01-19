@@ -34,6 +34,9 @@ function TopNav() {
         <button className="topnav-button" onClick={() => navigate("/newq")}>
           New Query
         </button>
+        <button className="topnav-button" onClick={() => navigate("/search")}>
+          reverse search
+        </button>
       </div>
 
       {/* Profile Section */}
