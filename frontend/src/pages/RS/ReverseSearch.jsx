@@ -65,7 +65,7 @@ const ReverseSearch = () => {
               src={imagePreview}
               alt="Preview"
               style={{
-                maxWidth: "100%",
+                maxWidth: "300px",
                 height: "auto",
                 border: "1px solid #ccc",
               }}
