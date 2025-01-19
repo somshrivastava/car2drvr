@@ -25,6 +25,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/profile" element={<Profile />} />
         <Route path="/loginsuccess" element={<Home />} />
         <Route path="/search" element={<ReverseSearch />} />
+        <Route path="/reccs/:encodedData" element={<Recommendations />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
