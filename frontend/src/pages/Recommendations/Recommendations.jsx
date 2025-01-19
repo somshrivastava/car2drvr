@@ -4,6 +4,7 @@ import TopNav from "../../components/TopNav.jsx";
 import Footer from "../../components/Footer.jsx";
 import axios from "axios";
 import "./recommendations.css";
+import { API_URL } from "../../environment.js";
 
 const Recommendations = () => {
   const [data, setData] = useState([]);
@@ -25,7 +26,7 @@ const Recommendations = () => {
       // Make the API call with the parsed data
       axios
         .post(
-          "http://localhost:5001/car2drvr-finhacks/us-central1/api/get_car_recommendations",
+          `${API_URL}/get_car_recommendations`,
           {
             params: {
               min_price: formData.budgetLow,

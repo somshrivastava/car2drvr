@@ -155,9 +155,6 @@ app.post("/get_image", async (request, response) => {
     ],
   });
 
-  // const labels = res.data.responses[0].labelAnnotations;
-  // const descriptions = labels.map((label: any) => label.description).join(", ");
-
   response.status(200).send({
     data: JSON.stringify(
       res.data.responses[0].webDetection.webEntities[0].description

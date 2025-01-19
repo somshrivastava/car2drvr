@@ -4,6 +4,7 @@ import TopNav from "../../components/TopNav.jsx";
 import Footer from "../../components/Footer.jsx";
 import "./ReverseSearch.css";
 import axios from "axios";
+import { API_URL } from "../../environment.js";
 
 // useEffect(() => {
 //   const year = "2024";
@@ -47,7 +48,7 @@ const ReverseSearch = () => {
           setImagePreview(reader.result); // For previewing the image
           axios
             .post(
-              "http://127.0.0.1:5001/car2drvr-finhacks/us-central1/api/get_image",
+              `${API_URL}/get_image`,
               JSON.stringify({
                 image_base64: reader.result.split("base64,")[1],
               }),
