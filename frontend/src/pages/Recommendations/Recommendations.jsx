@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./recommendations.scss";
 import TopNav from "../../components/TopNav.jsx";
 import Footer from "../../components/Footer.jsx";
 import axios from "axios";
+import "./recommendations.css";
 
 const Recommendations = () => {
   const [data, setData] = useState([]);
@@ -61,11 +61,11 @@ const Recommendations = () => {
   return (
     <>
       <TopNav />
-      <div>
+      <div className="recsholder">
         <h1>Car Recommendations</h1>
         <ul>
           {data.map((car, index) => (
-            <li key={index}>
+            <li className="cards" key={index}>
               <h2>
                 {car.year} {car.make} {car.model}
               </h2>
