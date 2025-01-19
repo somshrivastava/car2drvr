@@ -1,40 +1,32 @@
-import React, { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase";
+import React from "react";
+import { useNavigate } from 'react-router-dom';
 import "./home.scss";
 import TopNav from "../../components/TopNav.jsx";
 import Footer from "../../components/Footer.jsx";
-import axios from "axios";
+import iconCar from "../../assets/super-car.png"; 
+import porshe from "../../assets/porsche.webp";
 
 const Home = () => {
-  axios
-    .get(
-      "http://127.0.0.1:5001/car2drvr-finhacks/us-central1/api/get_car_recommendations"
-    )
-    .then((res) => {
-      const apiResponse = res.data;
-      const cleanedDataString = `[${apiResponse.data}]`; // Wrap the string in brackets to make it a valid JSON array
-      let dataArray;
-      dataArray = JSON.parse(cleanedDataString);
-      console.log(dataArray);
-    });
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-        localStorage.setItem("uid", uid);
-      } else {
-        console.log("User is logged out");
-      }
-    });
-  }, []);
+  const navigate = useNavigate();
 
   return (
-    <div>
-      <TopNav />
-      <Footer />
-    </div>
+    <>
+      <TopNav/>
+      <div className="home-container">
+        <div className="hero-section" style={{ backgroundImage: `url(${porshe})` }}>
+          <div className="content-wrapper">
+            <h1>Welcome to Car2Drvr</h1>
+            <h2>Find your Perfect Car Today</h2>
+            <div className="search-button" onClick={() => navigate('/newq')}>
+              <img src={iconCar} alt="Car icon" className="car-icon" />
+              <span>Search Now</span>
+              <span className="arrow">›</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer/>
+    </>
   );
 };
 

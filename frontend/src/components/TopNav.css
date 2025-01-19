@@ -23,7 +23,7 @@
 
 .topnav-links {
   display: flex;
-  gap: 20px;
+  gap: 100px;
 }
 
 .topnav-button {
@@ -50,11 +50,9 @@
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 0px 0px 0px 0px;
 }
 
 .topnav-end .topnav-profile-button:hover {
@@ -64,11 +62,4 @@
 
 .topnav-end .topnav-icon {
   font-size: 20px;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  padding-top: 70px; /* Reserve space for the fixed topnav */
-  font-family: Arial, sans-serif;
 }
