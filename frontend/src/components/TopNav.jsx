@@ -39,7 +39,7 @@ function TopNav() {
       <div className="topnav-end">
         <button
           className="topnav-profile-button"
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate("/login")}
         >
           <i className="topnav-icon">👤</i>
         </button>
