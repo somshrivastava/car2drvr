@@ -76,3 +76,21 @@
   cursor: pointer;
   margin-left: 10px;
 }
+
+.topnav-profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.topnav-logout-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  padding-bottom: 50%;
+}
