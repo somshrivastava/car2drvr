@@ -8,6 +8,7 @@ import About from "./pages/About/About.jsx";
 import Contact from "./pages/Contact/Contact.jsx";
 ////import Profile from "./pages/Profile/Profile.jsx";
 import Login from "./pages/Login/Login.jsx";
+import Recommendations from "./pages/Recommendations/Recommendations.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/reccs" element={<Recommendations />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

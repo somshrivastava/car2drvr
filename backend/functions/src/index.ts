@@ -2,16 +2,27 @@ import * as functions from "firebase-functions";
 import express from "express";
 import cors from "cors";
 import axios from "axios";
-import { OPEN_AI_KEY } from "../env";
 
 // Initialize Express app
 const app = express();
 
 // Enable CORS
-app.use(cors({ origin: true }));
+app.use(cors({ origin: "http://127.0.0.1:5001" }));
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 // Middleware for parsing JSON
 app.use(express.json());
+
+const OPEN =
+  "sk-proj-4fF9S4Oe4r45TUzIJGXDmG6igivBKZTOEqrU8IB8EwZY8W9Jd7LHfJXn8OcFkRwjop99wd";
 
 app.post("/get_car_data", async (req, res) => {
   const response = await axios.get(
@@ -20,35 +31,22 @@ app.post("/get_car_data", async (req, res) => {
   res.status(200).send({ data: response.data });
 });
 
-app.get("/get_car_recommendations", async (req, res) => {
-  const response = ((await callChatGPTAPI()) as string)
-    .substring(7)
-    .slice(0, -3)
-    .replaceAll("\n", "")
-    .replaceAll(/\\/g, "")
-    .replaceAll("[", "")
-    .replaceAll("]", "")
-    .trim();
-  console.log(response);
-  res.status(200).send({
-    data: response,
-  });
-});
+const OPEN2 =
+  "-OmrsT3BlbkFJw21ujKUjim3EGf83YTxjJLU-QsPnrJR8iA6rb6cgG7Xy-O-84k6usKjXYcmbPUrmTWtdQbZv0A";
 
-const OPEN = OPEN_AI_KEY;
+const final = OPEN + OPEN2;
 
-async function callChatGPTAPI() {
+app.post("/get_car_recommendations", async (req, res) => {
   const url = "https://api.openai.com/v1/chat/completions";
 
   const params = {
-    min_price: 52000,
-    max_price: 65000,
-    condition: "Used",
-    car_styling: "Sedan",
-    use_case: "Commuter car, for work, lifesytle, everyday tasks, fun",
-    fuel_type: "Gas",
-    non_negotiable:
-      "touch screen display, power tailgate, good trunk space, quiet cabin space/low engine noise, 5 seats, over 330 horse power",
+    min_price: req.body.min_price,
+    max_price: req.body.max_price,
+    condition: req.body.condition,
+    car_styling: req.body.car_styling,
+    use_case: req.body.use_case,
+    fuel_type: req.body.fuel_type,
+    non_negotiable: req.body.non_negotiable,
   };
 
   const chatGPTPrompt = `
@@ -138,13 +136,24 @@ async function callChatGPTAPI() {
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${OPEN}`,
+    Authorization: `Bearer ${final}`,
   };
 
   try {
     const response = await axios.post(url, data, { headers });
     console.log("Response from ChatGPT API:");
-    return response.data.choices[0].message.content;
+    const val = response.data.choices[0].message.content
+      .substring(7)
+      .slice(0, -3)
+      .replaceAll("\n", "")
+      .replaceAll(/\\/g, "")
+      .replaceAll("[", "")
+      .replaceAll("]", "")
+      .trim();
+    console.log(val);
+    res.status(200).send({
+      data: val,
+    });
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Error response from OpenAI API:", error.response?.data);
@@ -152,6 +161,6 @@ async function callChatGPTAPI() {
       console.error("An unexpected error occurred:", error);
     }
   }
-}
+});
 
 export const api = functions.https.onRequest(app);
