@@ -1,0 +1,16 @@
+/* trying to add this damn font*/
+.geo-regular {
+  font-family: "Geo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.geo-regular-italic {
+  font-family: "Geo", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+body {
+  font-family: "Geo", serif;
+}

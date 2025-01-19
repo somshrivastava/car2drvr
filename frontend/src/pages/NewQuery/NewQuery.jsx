@@ -3,9 +3,10 @@ import { InputText } from "primereact/inputtext";
 import "./NewQuery.css";
 import TopNav from "../../components/TopNav.jsx";
 import Footer from "../../components/Footer.jsx";
+import { useNavigate } from "react-router-dom"; // Add useNavigate for navigation
 
 const NewQuery = () => {
-  const [formData, setFormData] = useState({
+  /*const [formData, setFormData] = useState({
     budgetLow: "",
     budgetHigh: "",
     carStyle: [],
@@ -15,7 +16,22 @@ const NewQuery = () => {
     mileHigh: "",
     fuelType: [],
     nonNegotiables: "",
+  });*/
+
+  const [formData, setFormData] = useState({
+    budgetLow: "50000", // Default minimum budget
+    budgetHigh: "70000", // Default maximum budget
+    carStyle: ["SUV"], // Default car styles
+    focus: "Luxury", // Default focus
+    condition: "used", // Default condition (new/used)
+    mileLow: "5000", // Default minimum mileage (for used cars)
+    mileHigh: "30000", // Default maximum mileage (for used cars)
+    fuelType: ["SUV"], // Default fuel types
+    nonNegotiables:
+      "Leather seats, touchscreen, 5 seats, power tailgate, 360 parking view assist, heated front seats", // Default non-negotiables
   });
+
+  const navigate = useNavigate();
 
   const carStyles = [
     "Sedan",
@@ -57,7 +73,15 @@ const NewQuery = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Add validation logic so that chatapi does not breakkkkk
+    if (!formData.budgetLow || !formData.budgetHigh) {
+      alert("Please provide a valid budget range.");
+      return;
+    }
+
     console.log("Form Data Submitted: ", formData);
+    const encodedData = encodeURIComponent(JSON.stringify(formData));
+    navigate(`/reccs/${encodedData}`);
   };
 
   return (

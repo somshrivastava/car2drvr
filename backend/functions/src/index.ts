@@ -36,6 +36,7 @@ app.post("/get_car_recommendations", async (request, response) => {
       },
     }
   );
+  console.log(res.data.choices[0].message.content);
   let recommendations = res.data.choices[0].message.content
     .substring(7)
     .slice(0, -3)
@@ -77,6 +78,7 @@ function getPrompt(params: any) {
        - The lowest tier trim on a car must be greater then the min_price and less then the max_price, for example if the min_price = 52000, a honda pilot even if it meets the requirements should never be displayed since the lowest trim is under 52000
        - make sure that these are the highest rated, most accurate, best reccomendations based on reviews and real world testing, and safety ratings. Display the trim of each car and the safety score as well.
        - Add an estimated price to each of the objects in the list by referencing cars.com, make sure this price is within the price range, make the estimated price another key in the object
+       - For used cars only, display the mile range and year at which the car would be best to purchase at to ensure it is the best deal for the customers, make sure to include these in the json file as another key in the object
 
 
        2. Output Format:
