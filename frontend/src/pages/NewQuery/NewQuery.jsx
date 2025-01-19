@@ -142,7 +142,6 @@ const NewQuery = () => {
           </label>
           <label>
             <input
-              className="neworold"
               type="radio"
               name="condition"
               value="used"
