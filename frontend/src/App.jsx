@@ -4,9 +4,7 @@ import "./App.scss";
 function App() {
   return (
     <>
-      <PrimeReactProvider>
-        
-      </PrimeReactProvider>
+      <PrimeReactProvider></PrimeReactProvider>
     </>
   );
 }

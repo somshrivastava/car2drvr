@@ -4,7 +4,7 @@ import TopNav from "../../components/TopNav.jsx";
 import Footer from "../../components/Footer.jsx";
 import "./ReverseSearch.css";
 import axios from "axios";
-import { API_URL } from "../../environment.js";
+import { API_URL } from "../../environment.ts";
 
 const ReverseSearch = () => {
   const [base64String, setBase64String] = useState("");
@@ -49,9 +49,9 @@ const ReverseSearch = () => {
 
   return (
     <>
-      <TopNav />
+      {/* <TopNav /> */}
       <div style={{ padding: "20px", textAlign: "center" }}>
-        <h1>Upload and Convert Image to Base64</h1>
+        <h1>Upload and Image</h1>
         <input
           type="file"
           accept="image/*"
@@ -73,23 +73,6 @@ const ReverseSearch = () => {
           </div>
         )}
         <h1>{name}</h1>
-        {base64String && (
-          <div>
-            <h2>Base64 String:</h2>
-            <textarea
-              readOnly
-              value={base64String}
-              style={{
-                width: "100%",
-                height: "200px",
-                padding: "10px",
-                border: "1px solid #ccc",
-                borderRadius: "5px",
-                resize: "none",
-              }}
-            />
-          </div>
-        )}
       </div>
     </>
   );

@@ -2,10 +2,9 @@ import React from "react";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
-import { Button } from "primereact/button";
 import TopNav from "../../components/TopNav.jsx";
 // import { setDoc, doc } from "firebase/firestore";
-import "./Login.css";
+import "./Login.scss";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -39,9 +38,9 @@ const Login = () => {
 
   return (
     <>
-      <TopNav />
+      {/* <TopNav /> */}
       <div className="loginmain">
-        <Button label="Login" onClick={onLogin}></Button>
+        <button onClick={onLogin}>Login</button>
       </div>
     </>
   );

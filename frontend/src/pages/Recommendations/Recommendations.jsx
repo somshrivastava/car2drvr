@@ -4,7 +4,8 @@ import TopNav from "../../components/TopNav.jsx";
 import Footer from "../../components/Footer.jsx";
 import axios from "axios";
 import "./recommendations.css";
-import { API_URL } from "../../environment.js";
+import { API_URL } from "../../environment.ts";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 const Recommendations = () => {
   const [data, setData] = useState([]);
@@ -44,11 +45,15 @@ const Recommendations = () => {
             },
           }
         )
-        .then((response) => {
+        .then(async (response) => {
           const apiResponse = response.data;
           const cleanedDataString = `[${apiResponse.data}]`;
           let finalResponse = JSON.parse(cleanedDataString);
           console.log(finalResponse);
+          for (let car of finalResponse) {
+            console.log(await getImage(car.year, car.make, car.model));
+            car.image = await getImage(car.year, car.make, car.model);
+          }
           setData(finalResponse); // Update state with the API response
         })
         .catch((error) => {
@@ -59,26 +64,50 @@ const Recommendations = () => {
     }
   }, [encodedData]);
 
+  async function getImage(year, make, model) {
+    if (localStorage.getItem(`${year}${make}${model}`) == undefined) {
+      const response = (
+        await axios.get(
+          `https://customsearch.googleapis.com/customsearch/v1?q=${year}+${make}+${model}&cx=b6cadfc76acc7457f&key=AIzaSyDoARmjCcPX9zXjVZGm57uIEqK3JXko5mw&searchType=image`
+        )
+      ).data.items[1].image.thumbnailLink;
+      localStorage.setItem(`${year}${make}${model}`, response);
+      return response;
+    } else {
+      return localStorage.getItem(`${year}${make}${model}`);
+    }
+  }
+
   return (
     <>
-      <TopNav />
+      {/* <TopNav /> */}
       <div className="recsholder">
         <h1>Car Recommendations</h1>
-        <ul>
-          {data.map((car, index) => (
-            <li className="cards" key={index}>
-              <h2>
-                {car.year} {car.make} {car.model}
-              </h2>
-              <p>{car.description}</p>
-              <p>Price: {car.estimated_price}</p>
-              <p>Trim: {car.trim}</p>
-              <p>Safety Score: {car.safety_score}</p>
-            </li>
-          ))}
-        </ul>
+        {data.length == 0 ? (
+          <div className="progress-spinner">
+            <ProgressSpinner
+              style={{ width: "100px", height: "100px" }}
+              strokeWidth="5"
+            />
+          </div>
+        ) : (
+          <ul>
+            {data.map((car, index) => (
+              <li className="cards" key={index}>
+                <img src={car.image} alt="" />
+                <h2>
+                  {car.year} {car.make} {car.model}
+                </h2>
+                <p>{car.description}</p>
+                <p>Price: {car.estimated_price}</p>
+                <p>Trim: {car.trim}</p>
+                <p>Safety Score: {car.safety_score}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

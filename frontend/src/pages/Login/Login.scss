@@ -1,0 +1,17 @@
+.loginmain {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+
+  & button {
+    background: #007bff;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 15px 25px;
+  }
+}

@@ -4,6 +4,14 @@
   margin: 0 auto;
   padding-top: 40px;
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-spinner {
+  margin-top: 50px;
 }
 
 h1 {

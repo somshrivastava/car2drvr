@@ -1,16 +1,19 @@
-/* trying to add this damn font*/
-.geo-regular {
-  font-family: "Geo", serif;
-  font-weight: 400;
-  font-style: normal;
+* {
+  box-sizing: border-box;
+  font-family: "Poppins";
+  font-weight: normal;
 }
 
-.geo-regular-italic {
-  font-family: "Geo", serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
+html,
 body {
-  font-family: "Geo", serif;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
 }

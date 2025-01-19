@@ -12,24 +12,21 @@ const Home = () => {
 
   return (
     <>
-      <TopNav />
-      <div className="home-container">
-        <div
-          className="hero-section"
-          style={{ backgroundImage: `url(${porshe})` }}
-        >
-          <div className="content-wrapper">
-            <h1 className="cards geo-regular">Welcome to Car2Drvr</h1>
-            <h2>Find your Perfect Car Today</h2>
-            <div className="search-button" onClick={() => navigate("/newq")}>
-              <img src={iconCar} alt="Car icon" className="car-icon" />
-              <span>Search Now</span>
-              <span className="arrow">›</span>
-            </div>
-          </div>
+      {/* <TopNav /> */}
+      <div className="hero" style={{ backgroundImage: `url(${porshe})` }}>
+        <div className="hero-content">
+          <h1 className="hero-content-title">Welcome to Car2Drvr</h1>
+          <h2 className="hero-content-subtitle">Find your Perfect Car Today</h2>
+          <button
+            className="hero-content-button"
+            onClick={() => navigate("/newq")}
+          >
+            <img src={iconCar} alt="Car icon" className="search-icon" />
+            <span>Search Now</span>
+          </button>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

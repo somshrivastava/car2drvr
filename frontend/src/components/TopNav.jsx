@@ -1,62 +1,98 @@
 import React from "react";
-import "./TopNav.css";
+import "./TopNav.scss";
 import { isLoggedIn, logout } from "../utils/auth"; // Import auth utilities
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 function TopNav() {
   const navigate = useNavigate(); // React Router navigation
-  const userLoggedIn = isLoggedIn(); // Check if the user is logged in
-  const user = userLoggedIn ? JSON.parse(localStorage.getItem("user")) : null; // Retrieve user data from localStorage
+  const user = JSON.parse(localStorage.getItem("user"))
+    ? JSON.parse(localStorage.getItem("user"))
+    : null; // Retrieve user data from localStorage
+
+  const onLogin = (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, new GoogleAuthProvider())
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailPattern.test(user.email)) {
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              uid: user.uid,
+              email: user.email,
+              photoURL: user.photoURL, // Save the profile image URL
+            })
+          );
+          navigate("/");
+          console.log("User logged in with a valid email ID");
+          console.log(JSON.parse(localStorage.getItem("user")));
+        } else {
+          throw new Error("Invalid email");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
-    <div className="topnav">
-      {/* Logo Section */}
-      <div className="topnav-start">
+    <div className="navbar">
+      {/* Navbar Start Section */}
+      <div className="navbar-start">
         <img
-          alt="logo"
+          alt="Logo"
           src="/logo.svg"
-          className="topnav-logo"
+          className="navbar-start-logo"
           onClick={() => navigate("/")}
         />
       </div>
 
-      {/* Navigation Links */}
-      <div className="topnav-links">
-        <button className="topnav-button" onClick={() => navigate("/")}>
+      {/* Navbar Links Section */}
+      <div className="navbar-links">
+        <button className="navbar-links-button" onClick={() => navigate("/")}>
           Home
         </button>
-        <button className="topnav-button" onClick={() => navigate("/about")}>
-          About
-        </button>
-        <button className="topnav-button" onClick={() => navigate("/contact")}>
-          Contact
-        </button>
-        <button className="topnav-button" onClick={() => navigate("/newq")}>
+        <button
+          className="navbar-links-button"
+          onClick={() => navigate("/newq")}
+        >
           New Query
         </button>
-        <button className="topnav-button" onClick={() => navigate("/search")}>
-          reverse search
+        <button
+          className="navbar-links-button"
+          onClick={() => navigate("/reverse-search")}
+        >
+          Reverse Search
+        </button>
+        <button
+          className="navbar-links-button"
+          onClick={() => navigate("/about")}
+        >
+          About
+        </button>
+        <button
+          className="navbar-links-button"
+          onClick={() => navigate("/contact")}
+        >
+          Contact
         </button>
       </div>
 
-      {/* Profile Section */}
-      <div className="topnav-end">
-        {userLoggedIn ? (
-          <>
-            {/* Display User's Profile Image */}
-            <img
-              src={user?.photoURL || "/default-profile.png"} // Display profile image or default
-              alt="Profile"
-              className="topnav-profile-image"
-              onClick={() => navigate("/profile")} // Navigate to User Profile
-            />
-          </>
+      {/* Navbar End Section */}
+      <div className="navbar-end">
+        {JSON.parse(localStorage.getItem("user")) ? (
+          <img
+            src={user?.photoURL || "/default-profile.png"}
+            alt="User Profile"
+            className="navbar-end-pfp"
+            onClick={() => navigate("/profile")}
+          />
         ) : (
-          <button
-            className="topnav-profile-button"
-            onClick={() => navigate("/login")} // Navigate to Login
-          >
-            <i className="topnav-icon">👤</i>
+          <button className="navbar-end-button">
+            <img alt="Profile Logo" src="/profile.jpg" onClick={onLogin} />
           </button>
         )}
       </div>

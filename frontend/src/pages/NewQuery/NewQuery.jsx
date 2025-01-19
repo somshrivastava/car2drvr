@@ -86,7 +86,7 @@ const NewQuery = () => {
 
   return (
     <>
-      <TopNav />
+      {/* <TopNav /> */}
 
       <form onSubmit={handleSubmit} className="new-query-form">
         <h2 className="form-title">Car Search Query</h2>
@@ -239,7 +239,7 @@ const NewQuery = () => {
           Submit
         </button>
       </form>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

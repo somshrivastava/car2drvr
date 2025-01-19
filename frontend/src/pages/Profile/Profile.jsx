@@ -8,7 +8,7 @@ import { isLoggedIn, logout } from "../../utils/auth.js"; // Import auth utiliti
 const Profile = () => {
   return (
     <>
-      <TopNav />
+      {/* <TopNav /> */}
       <div className="profilemain">
         <h1>Profile Manager Page</h1>
         <p>
@@ -23,7 +23,7 @@ const Profile = () => {
           Logout 👋
         </button>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

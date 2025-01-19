@@ -5,7 +5,27 @@ import axios from "axios";
 
 const app = express();
 
-app.use(cors({ origin: "http://127.0.0.1:5001" }));
+// app.use(
+//   cors({
+//     origin: "http://127.0.0.1:5001",
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true,
+//   })
+// );
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
+// app.use(
+//   cors({
+//     origin: "https://car2drvr-finhacks.web.app",
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true,
+//   })
+// );
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -52,8 +72,10 @@ app.post("/get_car_recommendations", async (request, response) => {
 
 function getKey() {
   return (
-    "sk-proj-0fMm5B9_hQXBfsiSvakYMnyElxEpDkrl4v0NJm3qFJv3BVrJlGlrzDjnyE15-c2hbHh" +
-    "-b5QkDGT3BlbkFJB8aOWuyow0ZErSlZmU9d_TOV1DkrMoIX1L7wFqn7UnKXZQfzbgK6f0BphkxCRCZCSEIckPmKYA"
+    "sk-proj-dqGklfg0Ne5vaB0cOLUohNBgdDKWKfgIRVLDvceGprEzSU6y" +
+    "PJTnBNssUqijtTBafVITznMPJ3T3BlbkFJapcABmNe" +
+    "7ls0m9OeC5VHHtuQIcWm1GrgaAFf-I4" +
+    "3nhGbb71llHVuJNyzJeBfPgyeI3J2kWehMA"
   );
 }
 

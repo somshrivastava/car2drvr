@@ -18,12 +18,12 @@ const Search = () => {
 
   return (
     <>
-      <TopNav />
+      {/* <TopNav /> */}
       <div className="rspanel">
         <h1>Reverse Search [to be implemented]</h1>
       </div>
       <img src={result} alt="new" />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
