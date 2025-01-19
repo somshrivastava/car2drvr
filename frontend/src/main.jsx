@@ -20,6 +20,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/loginsuccess" element={<Home />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

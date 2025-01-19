@@ -24,6 +24,8 @@
 .topnav-links {
   display: flex;
   gap: 100px;
+  border-width: 10px;
+  border-color: black;
 }
 
 .topnav-button {
@@ -35,6 +37,8 @@
   padding: 8px 16px;
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  border-width: 20px;
+  border-color: #ffdd57;
 }
 
 .topnav-button:hover {

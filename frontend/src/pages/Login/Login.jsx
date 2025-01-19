@@ -17,7 +17,7 @@ const Login = () => {
         const user = userCredential.user;
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (emailPattern.test(user.email)) {
-          navigate("/");
+          navigate("/loginsuccess");
           localStorage.setItem(
             "user",
             JSON.stringify({ uid: user.uid, email: user.email })

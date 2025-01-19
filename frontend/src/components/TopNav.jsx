@@ -1,6 +1,6 @@
 import React from "react";
 import "./TopNav.css";
-import { isLoggedIn, logout } from "../utils/auth"; // Import auth utilities
+import { isLoggedIn, logout } from "../utils/auth"; // Import auth utilities so topnav profile cna check if user is logged in or not
 
 function TopNav() {
   const navigate = (path) => {

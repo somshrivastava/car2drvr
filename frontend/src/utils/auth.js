@@ -2,7 +2,7 @@
 
 export const isLoggedIn = () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  return user && user.uid && user.email.includes("@husky.neu.edu");
+  return user && user.uid && user.email.includes("@");
 };
 
 export const logout = () => {
