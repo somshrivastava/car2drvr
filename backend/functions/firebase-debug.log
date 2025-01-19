@@ -1,0 +1,109 @@
+[debug] [2025-01-19T01:51:18.738Z] ----------------------------------------------------------------------
+[debug] [2025-01-19T01:51:18.740Z] Command:       /usr/local/bin/node /usr/local/bin/firebase emulators:start --only functions
+[debug] [2025-01-19T01:51:18.741Z] CLI Version:   13.29.1
+[debug] [2025-01-19T01:51:18.741Z] Platform:      darwin
+[debug] [2025-01-19T01:51:18.741Z] Node Version:  v20.17.0
+[debug] [2025-01-19T01:51:18.741Z] Time:          Sat Jan 18 2025 20:51:18 GMT-0500 (Eastern Standard Time)
+[debug] [2025-01-19T01:51:18.741Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-19T01:51:18.841Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-19T01:51:18.841Z] > authorizing via signed-in user (som.shrivastava@gmail.com)
+[info] i  emulators: Starting emulators: functions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions"}}
+[debug] [2025-01-19T01:51:20.388Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-01-19T01:51:20.388Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2025-01-19T01:51:20.392Z] [hub] writing locator at /tmp/hub-car2drvr-finhacks.json
+[debug] [2025-01-19T01:51:21.916Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-01-19T01:51:21.917Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-01-19T01:51:21.917Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-01-19T01:51:21.917Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] ⚠  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2025-01-19T01:51:21.919Z] defaultcredentials: writing to file /Users/ss/.config/firebase/som_shrivastava_gmail.com_application_default_credentials.json
+[debug] [2025-01-19T01:51:21.921Z] Setting GAC to /Users/ss/.config/firebase/som_shrivastava_gmail.com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/ss/.config/firebase/som_shrivastava_gmail.com_application_default_credentials.json"}}
+[debug] [2025-01-19T01:51:21.921Z] Checked if tokens are valid: true, expires at: 1737253831442
+[debug] [2025-01-19T01:51:21.921Z] Checked if tokens are valid: true, expires at: 1737253831442
+[debug] [2025-01-19T01:51:21.922Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/car2drvr-finhacks/adminSdkConfig [none]
+[debug] [2025-01-19T01:51:22.354Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/car2drvr-finhacks/adminSdkConfig 200
+[debug] [2025-01-19T01:51:22.355Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/car2drvr-finhacks/adminSdkConfig {"projectId":"car2drvr-finhacks","storageBucket":"car2drvr-finhacks.firebasestorage.app"}
+[info] i  functions: Watching "/Users/ss/Documents/GitHub/car2drvr/backend/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/ss/Documents/GitHub/car2drvr/backend/functions\" for Cloud Functions..."}}
+[debug] [2025-01-19T01:51:22.388Z] Validating nodejs source
+[debug] [2025-01-19T01:51:22.843Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.2.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0",
+    "typescript": "^4.9.0"
+  },
+  "private": true
+}
+[debug] [2025-01-19T01:51:22.844Z] Building nodejs source
+[debug] [2025-01-19T01:51:22.844Z] Failed to find version of module node: reached end of search path /Users/ss/Documents/GitHub/car2drvr/backend/functions/node_modules
+[warn] ⚠  functions: Your requested "node" version "22" doesn't match your global version "20". Using node@20 from host. 
+[debug] [2025-01-19T01:51:22.845Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-01-19T01:51:22.849Z] Found firebase-functions binary at '/Users/ss/Documents/GitHub/car2drvr/backend/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8545
+
+[error] Error: Cannot find module './../../environment.ts'
+Require stack:
+- /Users/ss/Documents/GitHub/car2drvr/backend/functions/lib/index.js
+- /Users/ss/Documents/GitHub/car2drvr/backend/functions/node_modules/firebase-functions/lib/runtime/loader.js
+- /Users/ss/Documents/GitHub/car2drvr/backend/functions/node_modules/firebase-functions/lib/bin/firebase-functions.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at Module._load (node:internal/modules/cjs/loader:1051:27)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/ss/Documents/GitHub/car2drvr/backend/functions/lib/index.js:34:42)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/ss/Documents/GitHub/car2drvr/backend/functions/lib/index.js',
+    '/Users/ss/Documents/GitHub/car2drvr/backend/functions/node_modules/firebase-functions/lib/runtime/loader.js',
+    '/Users/ss/Documents/GitHub/car2drvr/backend/functions/node_modules/firebase-functions/lib/bin/firebase-functions.js'
+  ]
+}
+
+[debug] [2025-01-19T01:51:23.204Z] Got response code 400; body Failed to generate manifest from function source: Error: Cannot find module './../../environment.ts'
+Require stack:
+- /Users/ss/Documents/GitHub/car2drvr/backend/functions/lib/index.js
+- /Users/ss/Documents/GitHub/car2drvr/backend/functions/node_modules/firebase-functions/lib/runtime/loader.js
+- /Users/ss/Documents/GitHub/car2drvr/backend/functions/node_modules/firebase-functions/lib/bin/firebase-functions.js
+[error] ⬢  functions: Failed to load function definition from source: FirebaseError: Functions codebase could not be analyzed successfully. It may have a syntax or runtime error {"metadata":{"emulator":{"name":"functions"},"message":"Failed to load function definition from source: FirebaseError: Functions codebase could not be analyzed successfully. It may have a syntax or runtime error"}}
+[debug] [2025-01-19T01:51:28.216Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
