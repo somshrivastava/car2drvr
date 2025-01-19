@@ -1,11 +1,12 @@
 import React from "react";
 import "./TopNav.css";
-import { Link } from "react-router-dom";
+import { isLoggedIn, logout } from "../utils/auth"; // Import auth utilities
+import { useNavigate } from "react-router-dom";
 
 function TopNav() {
-  const navigate = (path) => {
-    window.location.href = path;
-  };
+  const navigate = useNavigate(); // React Router navigation
+  const userLoggedIn = isLoggedIn(); // Check if the user is logged in
+  const user = userLoggedIn ? JSON.parse(localStorage.getItem("user")) : null; // Retrieve user data from localStorage
 
   return (
     <div className="topnav">
@@ -33,16 +34,31 @@ function TopNav() {
         <button className="topnav-button" onClick={() => navigate("/newq")}>
           New Query
         </button>
+        <button className="topnav-button" onClick={() => navigate("/search")}>
+          reverse search
+        </button>
       </div>
 
-      {/* Profile Button */}
+      {/* Profile Section */}
       <div className="topnav-end">
-        <button
-          className="topnav-profile-button"
-          onClick={() => navigate("/login")}
-        >
-          <i className="topnav-icon">👤</i>
-        </button>
+        {userLoggedIn ? (
+          <>
+            {/* Display User's Profile Image */}
+            <img
+              src={user?.photoURL || "/default-profile.png"} // Display profile image or default
+              alt="Profile"
+              className="topnav-profile-image"
+              onClick={() => navigate("/profile")} // Navigate to User Profile
+            />
+          </>
+        ) : (
+          <button
+            className="topnav-profile-button"
+            onClick={() => navigate("/login")} // Navigate to Login
+          >
+            <i className="topnav-icon">👤</i>
+          </button>
+        )}
       </div>
     </div>
   );

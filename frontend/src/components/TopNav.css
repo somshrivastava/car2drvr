@@ -24,6 +24,8 @@
 .topnav-links {
   display: flex;
   gap: 100px;
+  border-width: 10px;
+  border-color: black;
 }
 
 .topnav-button {
@@ -35,6 +37,8 @@
   padding: 8px 16px;
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  border-width: 20px;
+  border-color: #ffdd57;
 }
 
 .topnav-button:hover {
@@ -62,4 +66,31 @@
 
 .topnav-end .topnav-icon {
   font-size: 20px;
+}
+
+.topnav-logout-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.topnav-profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.topnav-logout-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  padding-bottom: 50%;
 }
