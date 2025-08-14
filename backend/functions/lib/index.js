@@ -1,73 +1,88 @@
-import * as functions from "firebase-functions";
-import express from "express";
-
-import axios from "axios";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const app = express();
-
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.api = void 0;
+const functions = __importStar(require("firebase-functions"));
+const express_1 = __importDefault(require("express"));
+const axios_1 = __importDefault(require("axios"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const app = (0, express_1.default)();
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://car2drvr-finhacks.web.app",
-  "https://car2drvr-finhacks.firebaseapp.com",
+    "http://localhost:5173",
+    "https://car2drvr-finhacks.web.app",
+    "https://car2drvr-finhacks.firebaseapp.com",
 ];
 app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (origin && allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
-app.use(express.json());
-
-app.post("/get_car_recommendations", async (request, response) => {
-  const res = await axios.post(
-    "https://api.openai.com/v1/chat/completions",
-    {
-      model: "gpt-4o",
-      messages: [
-        {
-          role: "user",
-          content: getPrompt(request.body.params),
-        },
-      ],
-      temperature: 0.7,
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getKey()}`,
-      },
+    const origin = req.headers.origin;
+    if (origin && allowedOrigins.includes(origin)) {
+        res.header("Access-Control-Allow-Origin", origin);
     }
-  );
-  console.log(res.data.choices[0].message.content);
-  let recommendations = res.data.choices[0].message.content
-    .substring(7)
-    .slice(0, -3)
-    .replaceAll("\n", "")
-    .replaceAll(/\\/g, "")
-    .replaceAll("[", "")
-    .replaceAll("]", "")
-    .trim();
-  response.status(200).send({
-    data: recommendations,
-  });
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
 });
-
+app.use(express_1.default.json());
+app.post("/get_car_recommendations", async (request, response) => {
+    const res = await axios_1.default.post("https://api.openai.com/v1/chat/completions", {
+        model: "gpt-4o",
+        messages: [
+            {
+                role: "user",
+                content: getPrompt(request.body.params),
+            },
+        ],
+        temperature: 0.7,
+    }, {
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getKey()}`,
+        },
+    });
+    console.log(res.data.choices[0].message.content);
+    let recommendations = res.data.choices[0].message.content
+        .substring(7)
+        .slice(0, -3)
+        .replaceAll("\n", "")
+        .replaceAll(/\\/g, "")
+        .replaceAll("[", "")
+        .replaceAll("]", "")
+        .trim();
+    response.status(200).send({
+        data: recommendations,
+    });
+});
 function getKey() {
-  return process.env.OPEN_API_KEY;
+    return process.env.OPEN_API_KEY;
 }
-
-function getPrompt(params: any) {
-  return `
+function getPrompt(params) {
+    return `
          You are a car expert when it comes to reccomending vehicles given these inputs, you make sure that the each vehicle you provide is WITHIN the given price range. Your task is to recommend cars based on the following user preferences. It is critical that you strictly adhere to these restrictions and output the recommendations in a valid JSON format. Ensure the cars meet all criteria and are suitable for validation through the VehicleDatabase API.
        - MAKE SURE TO TRIPPLE CHECK IF THE MINIMUM MSRP IS GREATER THEN min_price, AND MAKE SURE THAT THE HIGHEST MSRP IS LESS THEN THE max_price.
        User Preferences:
@@ -147,42 +162,35 @@ function getPrompt(params: any) {
 
       At the end of the day, all I want is just a JSON file with the data that I requested, don't say anything else to me. Can you return it as a stringified JSON file?`;
 }
-
 const API_KEY = process.env.GOOGLE_API_KEY;
 const VISION_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${API_KEY}`;
-
 app.post("/get_image", async (request, response) => {
-  const res = await axios.post(VISION_API_URL, {
-    requests: [
-      {
-        image: {
-          content: request.body.image_base64,
-        },
-        features: [
-          {
-            type: "WEB_DETECTION",
-            maxResults: 10,
-          },
+    const res = await axios_1.default.post(VISION_API_URL, {
+        requests: [
+            {
+                image: {
+                    content: request.body.image_base64,
+                },
+                features: [
+                    {
+                        type: "WEB_DETECTION",
+                        maxResults: 10,
+                    },
+                ],
+            },
         ],
-      },
-    ],
-  });
-  response.status(200).send({
-    data: JSON.stringify(
-      res.data.responses[0].webDetection.webEntities.reduce(
-        (longest: any, current: any) => {
-          // Ensure the current object has a description
-          if (!current.description || !longest.description) {
-            return current.description ? current : longest;
-          }
-          return current.description.length > longest.description.length
-            ? current
-            : longest;
-        },
-        { description: "" }
-      ).description
-    ),
-  });
+    });
+    response.status(200).send({
+        data: JSON.stringify(res.data.responses[0].webDetection.webEntities.reduce((longest, current) => {
+            // Ensure the current object has a description
+            if (!current.description || !longest.description) {
+                return current.description ? current : longest;
+            }
+            return current.description.length > longest.description.length
+                ? current
+                : longest;
+        }, { description: "" }).description),
+    });
 });
-
-export const api = functions.https.onRequest(app);
+exports.api = functions.https.onRequest(app);
+//# sourceMappingURL=index.js.map

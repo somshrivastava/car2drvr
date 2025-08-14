@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>&copy; {new Date().getFullYear()} Car2Drivr - FinHacks</p>
+      <p>&copy; {new Date().getFullYear()} Car2Drvr - FinHacks</p>
     </footer>
   );
 };
